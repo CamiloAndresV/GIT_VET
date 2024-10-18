@@ -66,7 +66,7 @@ class Veterinario:#Clase Veterinario
         propietario.registrar_propietario()
         mascota.registrar_mascota()
         
-    def registrar_propietario(self):
+    def registrar_propietario(self): # metodo registrar propietario
         print("\nINGRESAR DATOS MASCOTA\n")
         while True:
             try:
@@ -85,12 +85,30 @@ class Veterinario:#Clase Veterinario
                 print("ERROR: dato ingresado no valido")
         mascota_existe = verificar_mascota_existente(nombre,especie)
         print(mascota_existe)
+        nombre=input("Nombre:").lower() # solicitar nombre de mascota
+        especie=input("Especie: ") # solicitar especie
+        mascota_existe = verificar_mascota_existente(nombre,especie) # variable que retorna true o false, de acuerdo a ka funcion
         #No dejar pasar si estos dos datos ya existen
-        while mascota_existe == True:
+        while mascota_existe == True: # si retorna true, siginifica que la masocta ya existe
+            #solicita que ingrese de nuevo el nombre y el input
             print("La mascota ya existe")
             nombre=input("Nombre:")
             especie=input("Especie: ")
-        mascota = ClasseMascota.Mascota("131313",nombre = nombre,color=input("Color: "),especie=especie, raza=input("Raza: "))
+        
+        color=input("Color: ") # solicitar el color de la mascota
+        
+        while True:
+            ingresar_raza=input("desea ingresae raza (si/no): ").lower() # preguntar si quiere agregar la raza
+            if ingresar_raza != "si" and ingresar_raza !="no":
+                print("Ingresa si/no")
+            else:
+                break
+        if ingresar_raza == "si": # si dice que si se solicita la raza
+            raza= input("Ingresa la Raza: ")
+        else: # en caso de que diga que no, no se hace nada
+            pass
+        id =id_mascota_random() # variable que almacena el id random que retorna la funcion id_mascota_random
+        ClasseMascota.Mascota(id, nombre,color,especie, raza) # se llama el modulo ClasseMascota que contiene la clase Mascota, y se pasan como parametros los atributos que tiene la mascota
         #Solicitar datos propietario
         print("\nINGRESAR DATOS PROPIETARIO\n")
         Id= input("ID: "),
@@ -99,13 +117,13 @@ class Veterinario:#Clase Veterinario
         direccion = input("DIRECCION: "),
         telefono = input("TELEFONO: "),
         correo = input("CORREO: ")
-        ClassePropietario.Propietario(Id,nombre,apellido,direccion,telefono,correo)
+        ClassePropietario.Propietario(Id,nombre,apellido,direccion,telefono,correo) # se llama el modulo ClassePropietario y su clase propietario, y se pasan como parametros los atributos que tiene el propietario
         
     def realizar_visitas(self): #Metodo de veterinario, que se encargara de realizar la visita
         if bsd.ides_veterinarios==[]: # si no exiten veterinarios
             print("No exiten veterinarios, agrega uno")
         else:
-            while True:
+            while True:#Excepciones
                 id_veterinario_visita= input("Ingresa el id del veterinario que visitara la mascota: ")
                 if len(id_veterinario_visita) != 10:
                     print("Error, ingresa 10 digitos")
@@ -121,12 +139,12 @@ class Veterinario:#Clase Veterinario
                         print(f"Mascotas: {i["Mascotas"]}")# Mostrar mascotas que tiene asignadas la mascota
                         #Excepciones
                         while True:
-                            id_mascota_visita = input("Ingresa el id de la mascota a la que se le   realizara la visita: ")
+                            id_mascota_visita = input("Ingresa el id de la mascota a la que se le realizara la visita: ")
                             if id_mascota_visita.isnumeric()== False: # si la entrada es distinta a  numeros
                                 print("Error, ingresa numeros")
                             elif len(id_mascota_visita) !=4: # si ingresa mas de 4 digitos
                                 print("Error, digita 4 digitos")
-                            elif id_mascota_visita not in i["Mascotas"]:
+                            elif id_mascota_visita not in i["Mascotas"]: # si la mascota ingresada, no se encuentran en las mascotas asginadas al veterinario
                                 print("Error, digita un id correcto")
                             else:
                                 break
@@ -135,7 +153,8 @@ class Veterinario:#Clase Veterinario
                         print("\n\t REALIZAR VISITA\n")
                         #Temperatura
                         while True:
-                            temperatura_mascota = input("Ingresa la temperatura: ")
+                            #excepciones
+                            temperatura_mascota = input("Ingresa la temperatura: ") 
                             if temperatura_mascota.isnumeric()== False:
                                 print("Ingresa datos numericos")
                             elif len(temperatura_mascota) !=2:
@@ -174,8 +193,35 @@ class Veterinario:#Clase Veterinario
                                 break
                         #Fecha registro
                         fecha_sin_formato=datetime.now() # definir hora
-                        fecha_con_formato=fecha_sin_formato.strftime("%A, %d de %B de %Y, %H:%M:%S")
-                        print(fecha_con_formato)
+                        fecha_con_formato=fecha_sin_formato.strftime("%d/%m/%Y %H:%M:%S")
+                        #recomendaciones
+                        recomendaciones = input("Recomendaciones: ")
+                        #Almacenar todo en un diccionario
+                        
+                        visita={ # diccionario que almacena todos los datos de visita
+                            "Temperatura":temperatura_mascota,
+                            "Peso":peso_mascota,
+                            "Frecuencia Respiratoria": frecuencia_respiratoria,
+                            "Frecuencia Cardiaca": frecuencia_cardiaca,
+                            "Estado de Animo": estado_animo_mascota,
+                            "ID veterinario": id_veterinario_visita, # id del veterinario que le realiza la visita
+                            "Recomendaciones": recomendaciones,
+                            "Fecha Visita": fecha_con_formato
+                        }
+                        for i in bsd.lista_mascota: # recorrer la lista con todas las mascotas
+                            if i["Id"]==id_mascota_visita: #ingresar al diccionario y comparar si los id son iguales
+                                i["Historia Clinica"].append(visita)
+                                print(i)
+                            
+                        
+                                
+                            
+
+                        
+                    
+                        
+                    
+                    
 
     def buscar_mascota(self):#Metodo para buscar una mascota en especifico
         if bsd.lista_mascota==[]:
