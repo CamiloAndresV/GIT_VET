@@ -46,7 +46,7 @@ diccionario_propietario={
     "Correo":"qedas",
     "Mascotas":["12123"]
 }
-lista_terinarios =[diccionario]
+lista_veterinarios =[diccionario]
 lista_mascota=[diccionario_mascota,diccionario_mascota1]
 lista_propietario =[diccionario_propietario]
 lista_visitas=[]

@@ -23,18 +23,18 @@ def menu():
     print("\nINGRESA UNA OPCION\n")
     import ClasesVeterinario
     while True:
-        seleccion = input(f"\n\tINGRESAR COMO\n1. Administrador\n2. Veterinario\n DIGITA AQUI: ")
+        seleccion = input(f"\n\tINGRESAR COMO\n1. Administrador\n2. Veterinario\n3. Salir \nDIGITA AQUI: ")
         if seleccion != "1" and seleccion != "2":
             print("Error, ingresa una opcion correcta")
         else:
             break
     if seleccion =="1": # si selecciona administrador
         os.system('clear')
-        print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario\n7. buscar historia clinica de Mascota """)
+        print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario\n7. buscar historia clinica de Mascota\n8. Volver Menu """)
         while True:
             opcion_admin= input("Ingresa la opcion: ")
-            if opcion_admin not in ["1","2","3","4","5","6","7"]:
-                print("Error opciones(1-6)")
+            if opcion_admin not in ["1","2","3","4","5","6","7","8"]:
+                print("Error opciones(1-8)")
             else:
                 break
         if opcion_admin =="1": # modulo, clase y metodo que permite registrar un veterinario
@@ -62,13 +62,15 @@ def menu():
         elif opcion_admin =="7": # modulo ClassVeterinario, clase Veterinario y metodo buscar_historia_clinica
             ClasesVeterinario.Veterinario.Buscar_historia_clinica()
             volver_menu()
+        elif opcion_admin == "8": # si selecciona 8 vuelve al menu
+            menu()
             
     elif seleccion == "2": #Si selecciona el Veterinario
-        print("\nOPCIONES DE VETERINARIO\n1. Registrar Nueva mascota\n2. Registrar Nuevo propietario\n3. Buscar una Mascota en especifico\n4. Buscar Mascotas\n 5. Realizar Visita\n6. Buscar Historia Clinica Mascota")
+        print("\nOPCIONES DE VETERINARIO\n1. Registrar Nueva mascota\n2. Registrar Nuevo propietario\n3. Buscar una Mascota en especifico\n4. Buscar Mascotas\n5. Realizar Visita\n6. Buscar Historia Clinica Mascotas\n7. Volver Menu")
         while True:
             opcion_veterinario= input("Ingresa la opcion: ")
-            if opcion_veterinario not in ["1", "2", "3","4","5"]: # 5 opciones que ejecutan lo que puede realizar el veterinario
-                print("Error, opciones (1-5)")
+            if opcion_veterinario not in ["1", "2", "3","4","5","6","7"]: # 5 opciones que ejecutan lo que puede realizar el veterinario
+                print("Error, opciones (1-7)")
             else:
                 break
         # METODOS DE VETERINARIO
@@ -94,7 +96,12 @@ def menu():
             volver_menu()
         elif opcion_veterinario =="6": # se llama el modulo ClasesVeterinario y su clase veterinario y posteriormente el metodo buscar_historia_clinica
             ClasesVeterinario.Veterinario().Buscar_historia_clinica()
-            volver_menu
+            volver_menu()
+        elif opcion_veterinario =="7": # si selecciona opcion 7 vuelve al menu
+            menu()
+    elif seleccion =="3":
+        print("Hasta pronto :)")
+        exit()
             
             
             

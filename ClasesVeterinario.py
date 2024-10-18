@@ -222,12 +222,13 @@ class Veterinario:#Clase Veterinario
                             if i["Id"]==id_mascota_visita: #ingresar al diccionario y comparar si los id son iguales
                                 i["Historia Clinica"].append(id_visita) # agregar a la historia clinica el id de la visita
                                 print(i)
-    def Buscar_historia_clinica(): #Metodo que se encargara de buscar las historias clinicas
+    def Buscar_historia_clinica(self): #Metodo que se encargara de buscar las historias clinicas
         if bsd.ides_mascotas==[]:
             print("Error, no hay mascotas registradas")
         else:
             info_mascota=Veterinario().buscar_mascota() # llamar metodo de veterinario que lo que hace es buscar una mascota, y retorna el diccionario, el cual se almacena en la variable info_mascota
             print(f"Historias CLinicas  de la mascota ({info_mascota["Nombre"]}) {info_mascota["Historia Clinica"]}")
+            
            
                                 
                             
