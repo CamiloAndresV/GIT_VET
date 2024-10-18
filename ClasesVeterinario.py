@@ -68,8 +68,21 @@ class Veterinario:#Clase Veterinario
         
     def registrar_propietario(self):
         print("\nINGRESAR DATOS MASCOTA\n")
-        nombre=input("Nombre:").lower()
-        especie=input("Especie: ")
+        while True:
+            try:
+                nombre=input("Nombre:").lower()
+                if nombre.isdigit():
+                    print("Error: solo str")
+                else:
+                    while True:
+                        especie=input("Especie: ")
+                        if especie.isnumeric():
+                            print("Error: solo str")
+                        else:
+                            break
+                    break
+            except ValueError:
+                print("ERROR: dato ingresado no valido")
         mascota_existe = verificar_mascota_existente(nombre,especie)
         print(mascota_existe)
         #No dejar pasar si estos dos datos ya existen
@@ -241,6 +254,12 @@ class Veterinario:#Clase Veterinario
         return diccionario_tarjeta
     os.system('clear')
     
+mi_objeto = Veterinario()
+# Llamar al método
+mi_objeto.registrar_propietario()
+
+
+
 def verificar_mascota_existente(nombre,especie):#Verifica si una mascota existe o no
     #Recorrer la lista de mascotas para verificar comparar si la mascota existe o no 
     for i in bsd.lista_mascota:
