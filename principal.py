@@ -1,10 +1,11 @@
 import bsd # modulo que contiene las listas generales
-import pyfiglet
+#import pyfiglet 
 import ClaseAdmin
+import os
 
 
 def menu():
-    nombre_veterinaria= pyfiglet.figlet_format(f"\tMASCOTA   FELIZ", font="Doom")
+    #nombre_veterinaria= pyfiglet.figlet_format(f"\tMASCOTA   FELIZ", font="Doom")
     perro1=(rf"""
             
          __ / \                                                           / \__
@@ -18,16 +19,17 @@ def menu():
     
     
     print(perro1) # se imprime los eslogan de las mascotas
-    print(nombre_veterinaria)
+    #print(nombre_veterinaria)
     print("\nINGRESA UNA OPCION\n")
     import ClasesVeterinario
     while True:
-        seleccion = input(f"\n\tINGRESAR COMO\n1. Administrador\n2. Veterinario:\n ")
+        seleccion = input(f"\n\tINGRESAR COMO\n1. Administrador\n2. Veterinario\n DIGITA AQUI: ")
         if seleccion != "1" and seleccion != "2":
             print("Error, ingresa una opcion correcta")
         else:
             break
     if seleccion =="1": # si selecciona administrador
+        os.system('clear')
         print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario """)
         while True:
             opcion_admin= input("Ingresa la opcion: ")
@@ -40,6 +42,7 @@ def menu():
             print("Veterinario Registrado Exitosamente")  
             volver_menu()
         elif opcion_admin == "2": # modulo, clase y metodo que permite actualizar datos de propietario
+            os.system('clear')
             ClaseAdmin.admin.modificar_propietario()
             volver_menu()
         elif opcion_admin == "3":# modulo, clase y metodo que permite actualizar datos de Veterinario

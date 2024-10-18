@@ -2,6 +2,7 @@ import random
 import ClasseMascota 
 import ClassePropietario
 import ClaseAdmin
+import os
 import bsd
 from datetime import datetime # importamos la libreria datetime para la hora
 class Veterinario:#Clase Veterinario
@@ -163,12 +164,6 @@ class Veterinario:#Clase Veterinario
                         fecha_con_formato=fecha_sin_formato.strftime("%A, %d de %B de %Y, %H:%M:%S")
                         print(fecha_con_formato)
 
-                        
-                    
-                        
-                    
-                    
-
     def buscar_mascota(self):#Metodo para buscar una mascota en especifico
         if bsd.lista_mascota==[]:
             print("No hay mascotas Registradas")
@@ -204,8 +199,8 @@ class Veterinario:#Clase Veterinario
                 print(f"{i.values()}\n")
 
 
-
     def tarjeta_profesional(self):#Metodo que solicita la tarjeta profesional de veterinario
+        os.system('clear')
         print(f"\t\n TARJETA PROFESIONAL\n")
         diccionario_tarjeta={ # diccionario con toda la información de la tarjeta profesional
             "Nombre":f"{self.nombres} {self.apellidos}",
@@ -244,6 +239,7 @@ class Veterinario:#Clase Veterinario
         diccionario_tarjeta["Nombre instituto"]=nombre_instituto
         diccionario_tarjeta["Año"]= Año
         return diccionario_tarjeta
+    os.system('clear')
     
 def verificar_mascota_existente(nombre,especie):#Verifica si una mascota existe o no
     #Recorrer la lista de mascotas para verificar comparar si la mascota existe o no 
