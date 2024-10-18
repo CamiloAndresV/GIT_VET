@@ -29,7 +29,6 @@ def menu():
         else:
             break
     if seleccion =="1": # si selecciona administrador
-        os.system('clear')
         print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario """)
         while True:
             opcion_admin= input("Ingresa la opcion: ")

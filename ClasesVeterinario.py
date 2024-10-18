@@ -212,16 +212,7 @@ class Veterinario:#Clase Veterinario
                             if i["Id"]==id_mascota_visita: #ingresar al diccionario y comparar si los id son iguales
                                 i["Historia Clinica"].append(visita)
                                 print(i)
-                            
-                        
-                                
-                            
-
-                        
-                    
-                        
-                    
-                    
+            
 
     def buscar_mascota(self):#Metodo para buscar una mascota en especifico
         if bsd.lista_mascota==[]:
@@ -300,11 +291,9 @@ class Veterinario:#Clase Veterinario
         return diccionario_tarjeta
     os.system('clear')
     
-mi_objeto = Veterinario()
+""" mi_objeto = Veterinario()
 # Llamar al método
-mi_objeto.registrar_propietario()
-
-
+mi_objeto.registrar_propietario() """
 
 def verificar_mascota_existente(nombre,especie):#Verifica si una mascota existe o no
     #Recorrer la lista de mascotas para verificar comparar si la mascota existe o no 
