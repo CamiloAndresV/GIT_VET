@@ -29,10 +29,11 @@ def menu():
         else:
             break
     if seleccion =="1": # si selecciona administrador
-        print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario """)
+        os.system('clear')
+        print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario\n7. buscar historia clinica de Mascota """)
         while True:
             opcion_admin= input("Ingresa la opcion: ")
-            if opcion_admin not in ["1","2","3","4","5","6"]:
+            if opcion_admin not in ["1","2","3","4","5","6","7"]:
                 print("Error opciones(1-6)")
             else:
                 break
@@ -58,8 +59,12 @@ def menu():
         elif opcion_admin == "6":# modulo, clase y metodo que permite asignar mascotas
             ClaseAdmin.admin.asignar()
             volver_menu()
+        elif opcion_admin =="7": # modulo ClassVeterinario, clase Veterinario y metodo buscar_historia_clinica
+            ClasesVeterinario.Veterinario.Buscar_historia_clinica()
+            volver_menu()
+            
     elif seleccion == "2": #Si selecciona el Veterinario
-        print("\nOPCIONES DE VETERINARIO\n1. Registrar Nueva mascota\n2. Registrar Nuevo propietario\n3. Buscar una Mascota en especifico\n4. Buscar Mascotas\n 5. Realizar Visita")
+        print("\nOPCIONES DE VETERINARIO\n1. Registrar Nueva mascota\n2. Registrar Nuevo propietario\n3. Buscar una Mascota en especifico\n4. Buscar Mascotas\n 5. Realizar Visita\n6. Buscar Historia Clinica Mascota")
         while True:
             opcion_veterinario= input("Ingresa la opcion: ")
             if opcion_veterinario not in ["1", "2", "3","4","5"]: # 5 opciones que ejecutan lo que puede realizar el veterinario
@@ -87,6 +92,9 @@ def menu():
         elif opcion_veterinario =="5": #REALIZAR VISITAS
             ClasesVeterinario.Veterinario().realizar_visitas() # se llama el modulo Clasesveterinario y su clase Veterinario, que contiene el metodo realizar_visitas que se encarga de realizar visitas a las mascotas del veterinario
             volver_menu()
+        elif opcion_veterinario =="6": # se llama el modulo ClasesVeterinario y su clase veterinario y posteriormente el metodo buscar_historia_clinica
+            ClasesVeterinario.Veterinario().Buscar_historia_clinica()
+            volver_menu
             
             
             

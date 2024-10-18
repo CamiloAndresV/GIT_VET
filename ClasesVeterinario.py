@@ -30,73 +30,80 @@ class Veterinario:#Clase Veterinario
     def registrar_mascota(self):
         #Solicitar datos propietario
         print("\nINGRESAR DATOS PROPIETARIO\n")
-        id = input("ID: "),
-        nombre=input("NOMBRE: "),
-        apellido = input("APELLIDOS: "),
-        direccion = input("DIRECCION: "),
-        telefono = input("TELEFONO: "),
+        id = input("ID: ")
+        nombre=input("NOMBRE: ")
+        apellido = input("APELLIDOS: ")
+        direccion = input("DIRECCION: ")
+        telefono = input("TELEFONO: ")
         correo = input("CORREO: ")
-        propietario = ClassePropietario.Propietario(id,nombre,apellido,direccion,telefono,correo)
-        #Solicitar datos de la mascota 
-        print("\nINGRESA LOS DATOS DE LA MASCOTA\n")
-        nombre=input("Nombre:").lower()
-        especie=input("Especie: ")
-        mascota_existe = verificar_mascota_existente(nombre,especie)
-        print(mascota_existe)
-        #No dejar pasar si estos dos datos ya existen
-        while mascota_existe == True:
-            print("La mascota ya existe")
-            nombre=input("Nombre:")
-            especie=input("Especie: ")
-        color=input("Color: ")
-        while True:
-            ingresar_raza=input("desea ingresae raza (si/no): ").lower()
-            if ingresar_raza != "si" and ingresar_raza !="no":
-                print("Ingresa si/no")
-            else:
-                break
-        if ingresar_raza == "si":
-            raza= input("Ingresa la Raza: ")
+        print(id)
+        print(bsd.ides_propietarios)
+        if id in bsd.ides_propietarios: # verificar si el propietario existe
+            print("Se te agregara una mascota, ingresa los datos...\n ")
+            for i in bsd.lista_propietario: # recorrer la lista de todos los propietarios
+                if i["Id"]== id: # si el id del propietario coinciden 
+                    # solicitar los datos de la nueva mascota
+                    print("\nINGRESA LOS DATOS DE LA MASCOTA")
+                    nombre=input("Nombre:").lower()
+                    especie=input("Especie: ")
+                    #No dejar pasar si estos dos datos ya existen
+                    color=input("Color: ")
+                    while True:
+                        ingresar_raza=input("desea ingresae raza (si/no): ").lower()
+                        if ingresar_raza != "si" and ingresar_raza !="no":
+                            print("Ingresa si/no")
+                        else:
+                            break
+                    if ingresar_raza == "si":
+                        raza= input("Ingresa la Raza: ")
+                    else:
+                        pass
+                    id=id_mascota_random() # generar id random para la mascota
+                    i["Mascotas"].append(id) # Agregar el id de la nueva mascota al veterianario
+                    mascota=ClasseMascota.Mascota(id,nombre,color,especie, raza)  # llamar el modulo, la clase, y pasar los atributos
+                    mascota.registrar_mascota()# registrar mascota, llamando el metodo registrar_mascota
         else:
-            pass
-        id=id_mascota_random()
-        mascota = ClasseMascota.Mascota(id,nombre,color,especie, raza="No definido")
-        propietario.mascota=mascota.id
-        #Guardar datos de la mascota y el propietario en la lista 
-        propietario.registrar_propietario()
-        mascota.registrar_mascota()
-        
+            #se registran como usuaios nuevo, con mascota nueva
+            propietario = ClassePropietario.Propietario(id,nombre,apellido,direccion,telefono,correo)
+            #Solicitar datos de la mascota 
+            print("\nINGRESA LOS DATOS DE LA MASCOTA\n")
+            nombre=input("Nombre:").lower()
+            especie=input("Especie: ")
+            #No dejar pasar si estos dos datos ya existen
+            color=input("Color: ")
+            while True:
+                ingresar_raza=input("desea ingresae raza (si/no): ").lower()
+                if ingresar_raza != "si" and ingresar_raza !="no":
+                    print("Ingresa si/no")
+                else:
+                    break
+            if ingresar_raza == "si":
+                raza= input("Ingresa la Raza: ")
+            else:
+                pass
+            id=id_mascota_random()
+            mascota = ClasseMascota.Mascota(id,nombre,color,especie, raza="No definido")
+            propietario.mascota=mascota.id
+            #Guardar datos de la mascota y el propietario en la lista 
+            propietario.registrar_propietario()
+            mascota.registrar_mascota()
+
     def registrar_propietario(self): # metodo registrar propietario
         print("\nINGRESAR DATOS MASCOTA\n")
         while True:
-            try:
                 nombre=input("Nombre:").lower()
-                if nombre.isdigit():
+                if nombre.isalpha()== True:
                     print("Error: solo str")
                 else:
-                    while True:
-                        especie=input("Especie: ")
-                        if especie.isnumeric():
-                            print("Error: solo str")
-                        else:
-                            break
                     break
-            except ValueError:
-                print("ERROR: dato ingresado no valido")
-        mascota_existe = verificar_mascota_existente(nombre,especie)
-        print(mascota_existe)
-        nombre=input("Nombre:").lower() # solicitar nombre de mascota
-        especie=input("Especie: ") # solicitar especie
-        mascota_existe = verificar_mascota_existente(nombre,especie) # variable que retorna true o false, de acuerdo a ka funcion
-        #No dejar pasar si estos dos datos ya existen
-        while mascota_existe == True: # si retorna true, siginifica que la masocta ya existe
-            #solicita que ingrese de nuevo el nombre y el input
-            print("La mascota ya existe")
-            nombre=input("Nombre:")
+                    
+        while True:
             especie=input("Especie: ")
-        
-        color=input("Color: ") # solicitar el color de la mascota
-        
+            if especie.isalpha()== True:
+                print("Error: solo str")
+            else:
+                break
+        color=input("Color: ")
         while True:
             ingresar_raza=input("desea ingresae raza (si/no): ").lower() # preguntar si quiere agregar la raza
             if ingresar_raza != "si" and ingresar_raza !="no":
@@ -151,6 +158,8 @@ class Veterinario:#Clase Veterinario
                             
                         #DATOS DE VISITA
                         print("\n\t REALIZAR VISITA\n")
+                        id_visita= id_visita_random() # esta variable almacenara el id random que se generara
+                        
                         #Temperatura
                         while True:
                             #excepciones
@@ -199,6 +208,7 @@ class Veterinario:#Clase Veterinario
                         #Almacenar todo en un diccionario
                         
                         visita={ # diccionario que almacena todos los datos de visita
+                            "Id Visita": id_visita,
                             "Temperatura":temperatura_mascota,
                             "Peso":peso_mascota,
                             "Frecuencia Respiratoria": frecuencia_respiratoria,
@@ -210,9 +220,27 @@ class Veterinario:#Clase Veterinario
                         }
                         for i in bsd.lista_mascota: # recorrer la lista con todas las mascotas
                             if i["Id"]==id_mascota_visita: #ingresar al diccionario y comparar si los id son iguales
-                                i["Historia Clinica"].append(visita)
+                                i["Historia Clinica"].append(id_visita) # agregar a la historia clinica el id de la visita
                                 print(i)
             
+    def Buscar_historia_clinica(): #Metodo que se encargara de buscar las historias clinicas
+        if bsd.ides_mascotas==[]:
+            print("Error, no hay mascotas registradas")
+        else:
+            info_mascota=Veterinario().buscar_mascota() # llamar metodo de veterinario que lo que hace es buscar una mascota, y retorna el diccionario, el cual se almacena en la variable info_mascota
+            print(f"Historias CLinicas  de la mascota ({info_mascota["Nombre"]}) {info_mascota["Historia Clinica"]}")
+           
+                                
+                            
+                        
+                                
+                            
+
+                        
+                    
+                        
+                    
+                    
 
     def buscar_mascota(self):#Metodo para buscar una mascota en especifico
         if bsd.lista_mascota==[]:
@@ -237,6 +265,7 @@ class Veterinario:#Clase Veterinario
             for i in bsd.lista_mascota:
                 if i['Id'] == mascota_buscar_id:
                     print(i)
+            return i
                 
                 
     def buscar_mascotas(self): # metodo que muestra todas las mascotas
@@ -291,25 +320,24 @@ class Veterinario:#Clase Veterinario
         return diccionario_tarjeta
     os.system('clear')
     
-""" mi_objeto = Veterinario()
-# Llamar al método
-mi_objeto.registrar_propietario() """
 
-def verificar_mascota_existente(nombre,especie):#Verifica si una mascota existe o no
-    #Recorrer la lista de mascotas para verificar comparar si la mascota existe o no 
-    for i in bsd.lista_mascota:
-        if i["Nombre"]==nombre: 
-            return True
-        elif i["Especie"]== especie:
-            return True
-        else: 
-            return False
+
+
+
 def id_mascota_random():
     lista_id=[]
     lista_numeros =["1","2","3","4","5","6","7","8","9","0"]
     while len(lista_id) <=3:
         digito = random.choice(lista_numeros)
         lista_id.append(digito)
+    return "".join(lista_id)
+def id_visita_random():
+    lista_id=[]
+    lista_numeros =["1","2","3","4","5","6","7","8","9","0"]
+    while len(lista_id) <=4:
+        digito = random.choice(lista_numeros)
+        lista_id.append(digito)
+    
     return "".join(lista_id)
         
 #Veterinario().buscar_mascotas()
