@@ -21,7 +21,7 @@ class Veterinario:#Clase Veterinario
             "Direccion":self.direccion,
             "Telefono":self.telefono,
             "Tarjeta profesional":[self.tarjeta],
-            "Mascotas":[]
+            "Mascotas":[] #se crea la lista que pertenece a las mascotas del propietario
         }
         bsd.ides_veterinarios.append(self.id)#Se guardardo el id del veterinario a la lista respectiva
         bsd.lista_veterinarios.append(diccionario_veterinario) #Se subio a la lista de veterinarios
@@ -29,12 +29,43 @@ class Veterinario:#Clase Veterinario
     def registrar_mascota(self):
         #Solicitar datos propietario
         print("\nINGRESAR DATOS PROPIETARIO\n")
-        id = input("ID: "),
-        nombre=input("NOMBRE: "),
-        apellido = input("APELLIDOS: "),
-        direccion = input("DIRECCION: "),
-        telefono = input("TELEFONO: "),
-        correo = input("CORREO: ")
+        while True:
+            try:
+                id = input("ID: "),
+                if id in len(id) != 10: #se hace control de excepciones
+                    print("Error: el id debe contener 10 digitos")
+                else:
+                    while True:
+                        nombre=input("NOMBRE: ")
+                        if nombre.isnumeric() == True:
+                            print("Error: no puedes ingresar numeros")
+                        else:
+                            break
+                    while True:
+                        apellido = input("APELLIDOS: ")
+                        if apellido.isnumeric() == True:
+                            print("Error: no puedes ingresar numeros")
+                        else:
+                            break
+                    direccion = input("DIRECCION: ")
+                    while True:
+                        telefono = input("TELEFONO: ")
+                        if telefono in len(telefono) != 10:
+                            print("Error: el telefono debe tener 10 numeros")
+                        else:
+                            break
+                    while True:
+                        u = "@."
+                        correo = input("CORREO: ")
+                        if u not in correo:
+                            print("ERROR: ingresa un correo valido")
+                        else:
+                            break
+                    break
+            except ValueError:
+                print("ERROR: dato ingresado no valido")
+                    
+
         propietario = ClassePropietario.Propietario(id,nombre,apellido,direccion,telefono,correo)
         #Solicitar datos de la mascota 
         print("\nINGRESA LOS DATOS DE LA MASCOTA\n")
@@ -258,9 +289,9 @@ class Veterinario:#Clase Veterinario
         diccionario_tarjeta["Año"]= Año
         return diccionario_tarjeta
     
-mi_objeto = Veterinario()
-# Llamar al método
-mi_objeto.registrar_propietario()
+#mi_objeto = Veterinario()
+### Llamar al método
+#mi_objeto.registrar_propietario()
 
 
 

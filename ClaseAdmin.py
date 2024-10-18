@@ -37,8 +37,8 @@ class admin:
             except ValueError:
                 print("\n\tERROR: dato ingresado no valido")
                 
-        tarjeta= ClasesVeterinario.Veterinario(id,nombre,apellido,direccion,telefono).tarjeta_profesional() # se llama el metodo tarjeta de la clase veterinario y el diccionario retornado se pasa como parametro en la clase Veterinario
-        ClasesVeterinario.Veterinario(id,nombre,apellido,direccion,telefono,tarjeta).registrar_veterinario()
+        tarjeta = ClasesVeterinario.Veterinario(id,nombre,apellido,direccion,telefono).tarjeta_profesional() # se llama el metodo tarjeta de la clase veterinario y el diccionario retornado se pasa como parametro en la clase Veterinario(esto es que con la variable tarjeta se pueda llamar a la funcion que esta dentro de una clase y en otro modulo aparte, y asi que retone el diccioanrio con los datos de la tarjeta profesional)
+        ClasesVeterinario.Veterinario(id,nombre,apellido,direccion,telefono,tarjeta).registrar_veterinario() #aca ya se tiene la tarjeta profesional ya que se pasa el parametro de la variable tarjeta
         
         
     def consultar_mascotas_propietario(): #FUNCION QUE CONSULTA LAS MASCOTAS DE UN PROPIETARIO
