@@ -25,7 +25,7 @@ class Veterinario:#Clase Veterinario
             "Mascotas":[]
         }
         bsd.ides_veterinarios.append(self.id)#Se guardardo el id del veterinario a la lista respectiva
-        bsd.lista_veterinarios.append(diccionario_veterinario) #Se subio a la lista de veterinarios
+        bsd.lista_terinarios.append(diccionario_veterinario) #Se subio a la lista de veterinarios
         
     def registrar_mascota(self):
         #Solicitar datos propietario
