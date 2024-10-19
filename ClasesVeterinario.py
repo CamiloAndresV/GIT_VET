@@ -261,7 +261,7 @@ class Veterinario:#Clase Veterinario
                         for i in bsd.lista_mascota: # recorrer la lista con todas las mascotas
                             if i["Id"]==id_mascota_visita: #ingresar al diccionario y comparar si los id son iguales
                                 i["Historia Clinica"].append(id_visita) # agregar a la historia clinica de la mascota el id de la visita
-                                encabezado =[f"{NEON_BLUE}ID mascota{NEON_BLUE}", f"{NEON_BLUE}Nombre{RESET}",f"{NEON_BLUE}Color{RESET}",f"{NEON_BLUE}Especie{RESET}",f"{NEON_BLUE}Raza{RESET}",f"{NEON_BLUE}IDveterinario{RESET}", f"{NEON_BLUE}Historial Clinico{RESET}"] # encabezado con estilos (colores)
+                                encabezado =[f"{NEON_BLUE}ID mascota{RESET}", f"{NEON_BLUE}Nombre{RESET}",f"{NEON_BLUE}Color{RESET}",f"{NEON_BLUE}Especie{RESET}",f"{NEON_BLUE}Raza{RESET}",f"{NEON_BLUE}IDveterinario{RESET}", f"{NEON_BLUE}Historial Clinico{RESET}"] # encabezado con estilos (colores)
                                 datos=[i.values()]
                                 print(tabulate(datos, headers=encabezado, tablefmt="grid"))
                                 
@@ -270,12 +270,13 @@ class Veterinario:#Clase Veterinario
             
     def Buscar_historia_clinica(self): #Metodo que se encargara de buscar las historias clinicas
         
-        if bsd.ides_mascotas==[]:
+        if bsd.ides_mascotas==[]: # verifica que las lista de ides_mascotas no este vacia
             print("Error, no hay mascotas registradas")
         else:
             info_mascota=Veterinario().buscar_mascota() # llamar metodo de veterinario que lo que hace es buscar una mascota, y retorna el diccionario, el cual se almacena en la variable info_mascota
-            print(f"Historias Clinicas  de la mascota ({info_mascota["Nombre"]}) {info_mascota["Historia Clinica"]}")
+            print(f"{NEON_GREEN}Historias Clinicas  de la mascota{RESET} ({info_mascota["Nombre"]}) {info_mascota["Historia Clinica"]}")
             while True:
+                #excepciones
                 id_visitas_ingresada= input("Ingresa el id de visita: ")
                 if id_visitas_ingresada.isnumeric()== False:
                     print("Error,digita valores numericos")
@@ -285,10 +286,14 @@ class Veterinario:#Clase Veterinario
                     print("Error, ese id no es valido")
                 else:
                     break
+            datos=[] # datos que seran los valores del diccionario
+            encabezado=[f"{NEON_BLUE}Id visita{RESET}",f"{NEON_BLUE}Temperatura{RESET}",f"{NEON_BLUE}Peso{RESET}",f"{NEON_BLUE}Frecuencias Respiratoria{RESET}",f"{NEON_BLUE}Frecuencia cardiaca{RESET}",f"{NEON_BLUE}Estado Animo{RESET}", f"{NEON_BLUE}Id Veterinario{RESET}",f"{NEON_BLUE}Recomendaciones{RESET}",f"{NEON_BLUE}Fecha Registro{RESET}"]
+            
             for i in bsd.lista_visitas: # for que recorrera la lista que contiene las informaciones de todas las visitas
                 if i["Id Visita"]== id_visitas_ingresada: # si el id de la visita que esta registrada es igual al que se ingreso, mostrar toda la info de la visita
+                    datos.append(list(i.values()))
                     print("\nVISITA")
-                    print(i)
+            print(tabulate(datos, headers=encabezado, tablefmt="grid"))
                     
 
     def buscar_mascota(self):#Metodo para buscar una mascota en especifico
@@ -318,9 +323,8 @@ class Veterinario:#Clase Veterinario
                             datos = [m.values()] # almacenar los datos del diccionario en esta lista
                             print(tabulate(datos,headers=encabezado, tablefmt="grid"))
                             return m # retornar el diccionario
-                
                 else:
-                    print("Ese nombre no se encuentra")
+                    print(f"Ese nombre no se encuentra")
                 
     def buscar_mascotas(self): # metodo que muestra todas las mascotas
         if bsd.lista_mascota==[]: # verifica que si hallan mascotas

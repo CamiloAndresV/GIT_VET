@@ -15,32 +15,23 @@ RESET = "\033[0m"
 
 def menu():
     import ClasesVeterinario
-    nombre_veterinaria= pyfiglet.figlet_format(f"\tMASCOTA  FELIZ", font="Doom")
-    perro1=(rf""" {NEON_ORANGE}
+    nombre_veterinaria= pyfiglet.figlet_format(f"\tMASCOTA   FELIZ", font="Doom")
+    perro1=(rf"""{NEON_BLUE}
             
-     __ / \                                                         / \__
- ___/@      )                                                     (      @\___        
-0           \                                                    /            O        
-\_____)      \                                                  /       (____/        
-        \  ____\                                              /_____  /
-        
+     __ / \                                                           / \__
+ ___/@      )                                                       (      @\___        
+0           \                                                      /            O        
+\_____)      \                                                    /       (____/        
+        \  ____\                                                /_____  /
         {RESET}""")
     
     
     
     print(perro1) # se imprime los eslogan de las mascotas
     #print(nombre_veterinaria)
-    #print(f"{BROWN}{nombre_veterinaria}{RESET}")
-    relleno = "#"
-    texto_relleno = ""
-    for line in nombre_veterinaria.splitlines():
-        texto_relleno += ''.join(relleno if char != ' ' else ' ' for char in line) + "\n"
-
-    # Imprimir el texto relleno
-    print(texto_relleno)
-        
+    print(f"{BROWN}{nombre_veterinaria}{RESET}")
     while True:
-        seleccion = input(f"\nINGRESAR COMO\n1. Administrador\n2. Veterinario\n3. Salir \nDIGITA AQUI: ")
+        seleccion = input(f"{NEON_ORANGE}\nINGRESAR COMO{RESET}\n1. Administrador\n2. Veterinario\n3. Salir \nDIGITA AQUI: ")
         if seleccion != "1" and seleccion != "2" and seleccion != "3":
             print("Error, ingresa una opcion correcta")
         else:
@@ -48,9 +39,9 @@ def menu():
     if seleccion =="1": # si selecciona administrador
         os.system('cls')
         
-        print("""OPCIONES ADMINISTRADOR\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario\n7. buscar historia clinica de Mascota\n8. Volver Menu """)
+        print(f"""{NEON_ORANGE}OPCIONES ADMINISTRADOR{RESET}\n1. Registrar un veterinario\n2. Modificar información propietario\n3. Modificar información Veterinario\n4. Consultar mascotas de propietario\n5. Consultar mascotas veterinario\n6. Asignar Mascota a Veterinario\n7. buscar historia clinica de Mascota\n8. Volver Menu """)
         while True:
-            opcion_admin= input("Ingresa la opcion: ")
+            opcion_admin= input(f"{BROWN}Ingresa la opcion: {RESET}")
             if opcion_admin not in ["1","2","3","4","5","6","7","8"]:
                 print("Error opciones(1-8)")
             else:
@@ -92,9 +83,9 @@ def menu():
             
     elif seleccion == "2": #Si selecciona el Veterinario
         os.system('cls')
-        print("\nOPCIONES DE VETERINARIO\n1. Registrar Nueva mascota\n2. Registrar Nuevo propietario\n3. Buscar una Mascota en especifico\n4. Buscar Mascotas\n5. Realizar Visita\n6. Buscar Historia Clinica Mascotas\n7. Volver Menu")
+        print(f"\n{NEON_ORANGE}OPCIONES DE VETERINARIO{RESET}\n{NEON_BLUE}1.{RESET} Registrar Nueva mascota\n{NEON_BLUE}2.{RESET} Registrar Nuevo propietario\n{NEON_BLUE}3.{RESET} Buscar una Mascota en especifico\n{NEON_BLUE}4.{RESET} Buscar Mascotas\n{NEON_BLUE}5.{RESET} Realizar Visita\n{NEON_BLUE}6.{RESET} Buscar Historia Clinica Mascotas\n{NEON_BLUE}7.{RESET} Volver Menu")
         while True:
-            opcion_veterinario= input("Ingresa la opcion: ")
+            opcion_veterinario= input(f"{BROWN}Ingresa la opcion:{RESET} ")
             if opcion_veterinario not in ["1", "2", "3","4","5","6","7"]: # 5 opciones que ejecutan lo que puede realizar el veterinario
                 print("Error, opciones (1-7)")
             else:
