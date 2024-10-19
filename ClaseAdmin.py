@@ -6,7 +6,6 @@ class admin:
         import ClasesVeterinario # importa el modulo ClasesVeterinario
         while True: 
             try:
-                os.system('clear')
                 print('\tINGRESA LOS DATOS DEL VETERINARIO\n')
                 id = str(input("Ingresa el id del veterinario: ")) #se pide el id 
                 if id in bsd.ides_veterinarios or len(id) != 10: #se hace control de excepciones
@@ -39,8 +38,7 @@ class admin:
                     break
             except ValueError:
                 print("\n\tERROR: dato ingresado no valido")
-        os.system('clear')
-                
+        os.system('cls') # limpiar consola
         tarjeta= ClasesVeterinario.Veterinario(id,nombre,apellido,direccion,telefono).tarjeta_profesional() # se llama el metodo tarjeta de la clase veterinario y el diccionario retornado se pasa como parametro en la clase Veterinario
         ClasesVeterinario.Veterinario(id,nombre,apellido,direccion,telefono,tarjeta).registrar_veterinario()
         
