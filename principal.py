@@ -2,7 +2,7 @@ import bsd # modulo que contiene las listas generales
 import pyfiglet 
 import ClaseAdmin
 import os
-
+print("bobo")
 NEON_PINK = "\033[38;5;Magenta"
 NEON_GREEN = "\033[38;5;82m"
 NEON_YELLOW = "\033[38;5;11m"
