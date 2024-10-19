@@ -31,7 +31,7 @@ def menu():
     #print(nombre_veterinaria)
     print(f"{BROWN}{nombre_veterinaria}{RESET}")
     while True:
-        seleccion = input(f"{NEON_ORANGE}\nINGRESAR COMO{RESET}\n1. Administrador\n2. Veterinario\n3. Salir \nDIGITA AQUI: ")
+        seleccion = input(f"{NEON_ORANGE}INGRESAR COMO{RESET}\n1. Administrador\n2. Veterinario\n3. Salir \nDIGITA AQUI: ")
         if seleccion != "1" and seleccion != "2" and seleccion != "3":
             print("Error, ingresa una opcion correcta")
         else:
